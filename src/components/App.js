@@ -5,7 +5,7 @@ import CitiesList from "./CitiesList";
 
 class App extends React.Component {
 
-  state = { city: [] }
+  state = { cities: [] }
 
   onSearchSubmit = async (term) => {
     const response = await axios.get("http://localhost:3030/cities", {
@@ -13,14 +13,14 @@ class App extends React.Component {
     });
 
     console.log(response.data.data);
-    this.setState({ city: response.data.data })
+    this.setState({ cities: response.data.data })
   }
 
   render() {
     return (
       <div>
         <SearchBar onSubmit={this.onSearchSubmit} />
-        Found: {this.state.city.length} cities.
+        Found: {this.state.cities.length} cities.
       </div>
     );
   }
