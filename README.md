@@ -5,3 +5,9 @@ Implement a user interface to pick cities from a long list of the major cities i
 ## Requirements
 
 - [NodeJS](https://nodejs.org/en/download/)
+
+## Usage
+
+- Clone this repository
+- Run the following commands `npm i && npm start`
+- You can view the app in the browser `http://localhost:3000`
