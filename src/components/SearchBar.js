@@ -1,20 +1,21 @@
 import React from "react";
 
 class SearchBar extends React.Component {
-
-  onInputChange(event) {
-    console.log(event.target.value)
-  }
+  state = { term: "" };
 
   render() {
     return (
       <div>
         <form>
           <label>Search city</label>
-          <input type="text" onChange={this.onInputChange} />
+          <input
+            type="text"
+            value={this.state.term}
+            onChange={(e) => this.setState({ term: e.target.value })}
+          />
         </form>
       </div>
-    )
+    );
   }
 }
 
