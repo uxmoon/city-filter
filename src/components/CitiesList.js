@@ -1,15 +1,10 @@
 import React from "react";
 
-class CitiesList extends React.Component {
-  state = { cities: [] };
-
-  render() {
-    return (
-      <div>
-        Cities list: {this.state.cities.map((city) => <div key={city.geonameid}>{city.name}</div> )}
-      </div>
-    )
-  }
+const CitiesList = (props) => {
+  const cities = props.cities.map((city) => {
+    return <div>{city.name}</div>
+  })
+  return <div>{cities}</div>;
 }
 
 export default CitiesList;
