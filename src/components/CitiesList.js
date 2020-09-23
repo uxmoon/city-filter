@@ -16,7 +16,7 @@ class CitiesList extends React.Component {
   render() {
     return (
       <div>
-        Cities list: {this.state.cities.length}
+        Cities list: {this.state.cities.map((city) => <div key={city.geonameid}>{city.name}</div> )}
       </div>
     )
   }
