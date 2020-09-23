@@ -1,8 +1,9 @@
 import React from "react";
+import CityCard from "./CityCard";
 
 const CitiesList = (props) => {
   const cities = props.cities.map((city) => {
-    return <div key={city.geonameid}>{city.name} - {city.subcountry}, {city.country}</div>
+    return <CityCard key={city.geonameid} city={city} />
   })
   return <div>{cities}</div>;
 }
