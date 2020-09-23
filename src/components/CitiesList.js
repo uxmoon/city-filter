@@ -6,13 +6,19 @@ class CitiesList extends React.Component {
 
   componentDidMount() {
     axios.get("http://localhost:3030/cities")
-    .then(response => {
-      console.log(response);
+    .then((response) => {
+      // console.log(response.data);
+      console.log(response.data.data);
+      this.setState({ cities: response.data.data })
     });
   }
 
   render() {
-    return <div>Cities list</div>;
+    return (
+      <div>
+        Cities list: {this.state.cities.length}
+      </div>
+    )
   }
 }
 
