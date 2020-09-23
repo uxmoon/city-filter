@@ -21,6 +21,7 @@ class App extends React.Component {
       <div>
         <SearchBar onSubmit={this.onSearchSubmit} />
         Found: {this.state.cities.length} cities.
+        <CitiesList cities={this.state.cities} />
       </div>
     );
   }
