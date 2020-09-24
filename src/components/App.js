@@ -2,10 +2,11 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import CitiesList from "./CitiesList";
 import API from "./api.js"
+import CitySelection from "./CitySelection";
 
 class App extends React.Component {
 
-  state = { cities: [], selectedCity: null }
+  state = { cities: [], selectedCity: [] }
 
   onSearchSubmit = async (term) => {
     const response = await API.get("/cities", {
@@ -19,12 +20,14 @@ class App extends React.Component {
   }
 
   onCitySelect = (city) => {
-    console.log("Selection", city)
+    // console.log("Selection", city.name)
+    this.setState({ selectedCity: city })
   }
 
   render() {
     return (
       <div>
+        <CitySelection city={this.state.selectedCity} />
         <SearchBar onSubmit={this.onSearchSubmit} />
         <CitiesList cities={this.state.cities} onCitySelect={this.onCitySelect} />
       </div>
