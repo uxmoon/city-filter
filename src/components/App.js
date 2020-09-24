@@ -5,7 +5,7 @@ import API from "./api.js"
 
 class App extends React.Component {
 
-  state = { cities: [] }
+  state = { cities: [], selectedCity: null }
 
   onSearchSubmit = async (term) => {
     const response = await API.get("/cities", {
@@ -18,11 +18,15 @@ class App extends React.Component {
     this.setState({ cities: response.data.data })
   }
 
+  onCitySelect = (city) => {
+    console.log("Selection", city)
+  }
+
   render() {
     return (
       <div>
         <SearchBar onSubmit={this.onSearchSubmit} />
-        <CitiesList cities={this.state.cities} />
+        <CitiesList cities={this.state.cities} onCitySelect={this.onCitySelect} />
       </div>
     );
   }

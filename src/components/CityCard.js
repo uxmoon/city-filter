@@ -1,8 +1,8 @@
 import React from "react";
 
-const CityCard = ({ city }) => {
+const CityCard = ({ city, onCitySelect }) => {
   return (
-    <div>
+    <div onClick={()=> onCitySelect(city)}>
       {city.name}
       <div>
         {city.subcountry}, {city.country}
