@@ -1,18 +1,20 @@
 import React from "react";
-import axios from "axios";
 import SearchBar from "./SearchBar";
 import CitiesList from "./CitiesList";
+import API from "./api.js"
 
 class App extends React.Component {
 
   state = { cities: [] }
 
   onSearchSubmit = async (term) => {
-    const response = await axios.get("http://localhost:3030/cities", {
-      params: { limit: 100, filter: term }
+    const response = await API.get("/cities", {
+      params: {
+        filter: term
+      }
     });
 
-    console.log(response.data.data);
+    // console.log(response.data.data);
     this.setState({ cities: response.data.data })
   }
 
@@ -20,7 +22,6 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar onSubmit={this.onSearchSubmit} />
-        Found: {this.state.cities.length} cities.
         <CitiesList cities={this.state.cities} />
       </div>
     );
