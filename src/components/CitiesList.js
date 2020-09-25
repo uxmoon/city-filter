@@ -7,7 +7,7 @@ const CitiesList = ({ cities, onCitySelect }) => {
       <CityCard onCitySelect={onCitySelect} key={city.geonameid} city={city} />
     );
   });
-  return <div>{renderedList}</div>;
+  return <div className="ui relaxed divided list">{renderedList}</div>;
 };
 
 export default CitiesList;

@@ -2,10 +2,15 @@ import React from "react";
 
 const CitySelection = ({ cities }) => {
   const renderedSelection = cities.map((city) => {
-    return <div key={city.geonameid}>{city.name}</div>;
+    return (
+      <div className="item" key={city.geonameid}>
+        <i className="marker icon"></i>
+        {city.name}({city.subcountry})
+      </div>
+    );
   });
 
-  return <div>{renderedSelection}</div>;
+  return <div className="ui horizontal list">{renderedSelection}</div>;
 };
 
 export default CitySelection;
