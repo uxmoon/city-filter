@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Search = () => {
+const Search = ({ selected, onSelectedChange }) => {
   /* init state */
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
@@ -69,7 +69,11 @@ const Search = () => {
   /* Results list */
   const renderedResults = results.map((result) => {
     return (
-      <div className="item" key={result.geonameid}>
+      <div
+        className="item"
+        key={result.geonameid}
+        onClick={() => onSelectedChange(result.name)}
+      >
         <i className="map marker icon"></i>
         <div className="content">
           <div className="header">{result.name}</div>
@@ -81,6 +85,9 @@ const Search = () => {
 
   return (
     <div>
+      <div>
+        Selected: {selected}
+      </div>
       <div className="ui form">
         <div className="field">
           <div className="ui large icon input">
