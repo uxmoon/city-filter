@@ -5,7 +5,7 @@ const Search = () => {
   /* init state */
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
 
   /* API request using useEffect */
   useEffect(() => {
@@ -19,12 +19,12 @@ const Search = () => {
           },
         });
 
-        if(response.data.data.length > 0) {
+        if (response.data.data.length > 0) {
           setResults(response.data.data);
-          setErrorMessage("");
+          setErrorMessage(null);
         } else {
           setResults([]);
-          setErrorMessage("No cities were found");
+          setErrorMessage('No cities were found');
         }
       } catch (error) {
         if (error.response) {
@@ -35,8 +35,10 @@ const Search = () => {
           console.log(error.response.data);
           console.log(error.response.status);
           console.log(error.response.headers);
-          setResults([])
-          setErrorMessage(error.response.data.message)
+          setResults([]);
+          setErrorMessage(
+            `${error.response.data.message}. Please reload the page and try again.`
+          );
         } else if (error.request) {
           /*
            * The request was made but no response was received, `error.request`
@@ -79,7 +81,6 @@ const Search = () => {
 
   return (
     <div>
-      {errorMessage}
       <div className="ui form">
         <div className="field">
           <div className="ui large icon input">
@@ -94,6 +95,7 @@ const Search = () => {
         </div>
       </div>
       <div className="ui selection celled list">{renderedResults}</div>
+      {errorMessage}
     </div>
   );
 };
