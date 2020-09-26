@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const Search = () => {
   /* init state */
-  const [term, setTerm] = useState('');
+  const [term, setTerm] = useState('york');
   const [results, setResults] = useState([]);
 
   /* API request using useEffect */
@@ -26,6 +26,12 @@ const Search = () => {
 
   }, [term]);
 
+  const renderedResults = results.map((result) => {
+    return (
+      <div>{result.name}</div>
+    )
+  })
+
   return (
     <div>
       <div className="ui form">
@@ -38,6 +44,7 @@ const Search = () => {
           />
         </div>
       </div>
+      <div>{renderedResults}</div>
     </div>
   );
 };
