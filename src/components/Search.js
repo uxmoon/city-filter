@@ -7,7 +7,7 @@ const Search = ({ selected, onSelectedChange }) => {
   const [results, setResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
   const [visible, setVisible] = useState(false);
-  const [status, setStatus] = useState("info");
+  const [status, setStatus] = useState('info');
 
   /* API request using useEffect */
   useEffect(() => {
@@ -29,7 +29,7 @@ const Search = ({ selected, onSelectedChange }) => {
           setResults([]);
           setErrorMessage('No cities were found. Try again with another search.');
           setVisible(true);
-          setStatus("info");
+          setStatus('info');
         }
       } catch (error) {
         if (error.response) {
@@ -45,7 +45,7 @@ const Search = ({ selected, onSelectedChange }) => {
             `${error.response.data.message} Please reload the page and try again.`
           );
           setVisible(true);
-          setStatus("error");
+          setStatus('error');
         } else if (error.request) {
           /*
            * The request was made but no response was received, `error.request`
@@ -92,11 +92,8 @@ const Search = ({ selected, onSelectedChange }) => {
 
   return (
     <div>
-
       {/* Display city selection */}
-      <div>
-        Selected: {selected}
-      </div>
+      <div>Selected: {selected}</div>
 
       {/* Display input search */}
       <div className="ui form">
@@ -120,7 +117,6 @@ const Search = ({ selected, onSelectedChange }) => {
       <div className={`ui message ${visible ? 'visible' : 'hidden'} ${status}`}>
         <p>{errorMessage}</p>
       </div>
-
     </div>
   );
 };
