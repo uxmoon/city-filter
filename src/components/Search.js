@@ -7,6 +7,7 @@ const Search = ({ selected, onSelectedChange }) => {
   const [results, setResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
   const [visible, setVisible] = useState(false);
+  const [status, setStatus] = useState("info");
 
   /* API request using useEffect */
   useEffect(() => {
@@ -28,6 +29,7 @@ const Search = ({ selected, onSelectedChange }) => {
           setResults([]);
           setErrorMessage('No cities were found. Try again with another search.');
           setVisible(true);
+          setStatus("info");
         }
       } catch (error) {
         if (error.response) {
@@ -40,9 +42,10 @@ const Search = ({ selected, onSelectedChange }) => {
           console.log(error.response.headers);
           setResults([]);
           setErrorMessage(
-            `${error.response.data.message}. Please reload the page and try again.`
+            `${error.response.data.message} Please reload the page and try again.`
           );
           setVisible(true);
+          setStatus("error");
         } else if (error.request) {
           /*
            * The request was made but no response was received, `error.request`
@@ -114,7 +117,7 @@ const Search = ({ selected, onSelectedChange }) => {
       <div className="ui selection celled list">{renderedResults}</div>
 
       {/* Display errorMessage */}
-      <div className={`ui message ${visible ? 'visible' : 'hidden'}`}>
+      <div className={`ui message ${visible ? 'visible' : 'hidden'} ${status}`}>
         <p>{errorMessage}</p>
       </div>
 
