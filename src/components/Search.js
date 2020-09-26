@@ -6,6 +6,7 @@ const Search = ({ selected, onSelectedChange }) => {
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [visible, setVisible] = useState(false);
 
   /* API request using useEffect */
   useEffect(() => {
@@ -22,9 +23,11 @@ const Search = ({ selected, onSelectedChange }) => {
         if (response.data.data.length > 0) {
           setResults(response.data.data);
           setErrorMessage(null);
+          setVisible(false);
         } else {
           setResults([]);
-          setErrorMessage('No cities were found');
+          setErrorMessage('No cities were found. Try again with another search.');
+          setVisible(true);
         }
       } catch (error) {
         if (error.response) {
@@ -39,6 +42,7 @@ const Search = ({ selected, onSelectedChange }) => {
           setErrorMessage(
             `${error.response.data.message}. Please reload the page and try again.`
           );
+          setVisible(true);
         } else if (error.request) {
           /*
            * The request was made but no response was received, `error.request`
@@ -85,9 +89,13 @@ const Search = ({ selected, onSelectedChange }) => {
 
   return (
     <div>
+
+      {/* Display city selection */}
       <div>
         Selected: {selected}
       </div>
+
+      {/* Display input search */}
       <div className="ui form">
         <div className="field">
           <div className="ui large icon input">
@@ -101,8 +109,15 @@ const Search = ({ selected, onSelectedChange }) => {
           </div>
         </div>
       </div>
+
+      {/* Display Results list */}
       <div className="ui selection celled list">{renderedResults}</div>
-      {errorMessage}
+
+      {/* Display errorMessage */}
+      <div className={`ui message ${visible ? 'visible' : 'hidden'}`}>
+        <p>{errorMessage}</p>
+      </div>
+
     </div>
   );
 };
