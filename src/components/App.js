@@ -3,7 +3,7 @@ import Search from './Search';
 
 export default () => {
   return (
-    <div>
+    <div className="ui container">
       <Search />
     </div>
   );

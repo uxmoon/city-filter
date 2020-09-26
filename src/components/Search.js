@@ -28,7 +28,14 @@ const Search = () => {
 
   const renderedResults = results.map((result) => {
     return (
-      <div>{result.name}</div>
+      <div className="item" key={result.geonameid}>
+        <div className="content">
+          <div className="header">
+            {result.name}
+          </div>
+          {result.subcountry}, {result.country}
+        </div>
+      </div>
     )
   })
 
@@ -44,7 +51,9 @@ const Search = () => {
           />
         </div>
       </div>
-      <div>{renderedResults}</div>
+      <div className="ui celled list">
+        {renderedResults}
+      </div>
     </div>
   );
 };
