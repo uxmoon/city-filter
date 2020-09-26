@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const Search = () => {
   /* init state */
-  const [term, setTerm] = useState('york');
+  const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
 
   /* API request using useEffect */
@@ -21,11 +21,16 @@ const Search = () => {
     };
 
     /* reduce API requests */
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       if (term) {
         search();
       }
-    }, 500);
+    }, 700);
+
+    /* clean up function to cancel previous timer */
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [term]);
 
   const renderedResults = results.map((result) => {
