@@ -55,7 +55,7 @@ const Search = () => {
               value={term}
               onChange={(event) => setTerm(event.target.value)}
               className="input"
-              placeholder="Search..."
+              placeholder="Enter a city name"
             />
             <i className="search icon"></i>
           </div>
