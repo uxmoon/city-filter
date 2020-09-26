@@ -4,20 +4,26 @@ import axios from 'axios';
 const Search = () => {
   /* init state */
   const [term, setTerm] = useState('');
+  const [results, setResults] = useState([]);
 
   /* API request using useEffect */
   useEffect(() => {
     const search = async () => {
-      await axios.get('http://localhost:3030/cities', {
+      const { data } = await axios.get('http://localhost:3030/cities', {
         params: {
           offset: 0,
           limit: 10,
           filter: term,
         },
       });
+
+      setResults(data.data);
     };
 
-    search();
+    if(term) {
+      search();
+    }
+
   }, [term]);
 
   return (
