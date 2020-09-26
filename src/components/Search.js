@@ -20,24 +20,24 @@ const Search = () => {
       setResults(data.data);
     };
 
-    if(term) {
-      search();
-    }
-
+    /* reduce API requests */
+    setTimeout(() => {
+      if (term) {
+        search();
+      }
+    }, 500);
   }, [term]);
 
   const renderedResults = results.map((result) => {
     return (
       <div className="item" key={result.geonameid}>
         <div className="content">
-          <div className="header">
-            {result.name}
-          </div>
+          <div className="header">{result.name}</div>
           {result.subcountry}, {result.country}
         </div>
       </div>
-    )
-  })
+    );
+  });
 
   return (
     <div>
@@ -51,9 +51,7 @@ const Search = () => {
           />
         </div>
       </div>
-      <div className="ui celled list">
-        {renderedResults}
-      </div>
+      <div className="ui celled list">{renderedResults}</div>
     </div>
   );
 };
