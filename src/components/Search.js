@@ -13,7 +13,7 @@ const Search = ({ onSelectedChange }) => {
   useEffect(() => {
     const search = async () => {
       try {
-        const response = await axios.get('/cities', {
+        const response = await API.get('/cities', {
           params: {
             filter: term,
           },
