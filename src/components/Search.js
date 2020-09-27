@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from './api';
 
 const Search = ({ onSelectedChange }) => {
   /* init state */
@@ -13,10 +13,8 @@ const Search = ({ onSelectedChange }) => {
   useEffect(() => {
     const search = async () => {
       try {
-        const response = await axios.get('http://localhost:3030/cities', {
+        const response = await axios.get('/cities', {
           params: {
-            offset: 0,
-            limit: 10,
             filter: term,
           },
         });
