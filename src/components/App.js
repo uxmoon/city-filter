@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { useState } from 'react';
 import Search from './Search';
+import Selection from './Selection';
 
 export default () => {
   const [selected, setSelected] = useState([]);
@@ -11,6 +12,9 @@ export default () => {
         <div className="content">Find your favorites cities</div>
       </h1>
       <Search selected={selected} onSelectedChange={setSelected} />
+      <hr />
+      <h3>Selection</h3>
+      <Selection selected={selected} />
     </div>
   );
 };
