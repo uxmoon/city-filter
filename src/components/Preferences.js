@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Preferences = () => {
-  const [cityId, setCityId] = useState([]);
+  const [cityId, setCityId] = useState(2643741);
 
   useEffect(() => {
     const submit = async () => {

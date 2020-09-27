@@ -77,7 +77,7 @@ const Search = ({ onSelectedChange }) => {
       <div
         className="item"
         key={result.geonameid}
-        onClick={() => onSelectedChange(result.geonameid)}
+        onClick={() => onSelectedChange(result.name)}
       >
         <i className="map marker icon"></i>
         <div className="content">

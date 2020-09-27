@@ -25,7 +25,7 @@ const List = () => {
 
   const renderedList = cityList.map((city) => {
     if(!null) {
-      return <div>{city.name}</div>
+      return <div key={city.geonameid}>{city.name}</div>
     }
   })
 
